@@ -9,7 +9,7 @@ struct Node
 
 int queueIt(int cylinderArray[], int size) {
 	for(int i = 0; i < size; i++) {
-		ptr = (struct Node*) malloc(sizeof(sturct Node));
+		ptr = (struct Node*) malloc(sizeof(struct Node));
 		ptr -> cylinder = cylinderArray[i];
 		ptr -> next = NULL;
 
@@ -21,11 +21,11 @@ int queueIt(int cylinderArray[], int size) {
 			rear = ptr;
 		}
 	}
-	retun 0;
+	return 0;
 }
 
 int dequeueIt() {
-	ptr = front 
+	ptr = front;
 	front = front -> next;
 	free(ptr);
 	return 0;
