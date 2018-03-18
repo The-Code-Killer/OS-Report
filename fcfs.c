@@ -47,11 +47,16 @@ int main() {
 	int numberOfProcess = 9, head = 143, totalDistance = 0;
 	int cylinderArray[] = {86, 1470, 913, 1774, 948, 1509, 1022, 1750, 130};
 
+	printf("Position of head : %d\n", head );
+	printf("Queue containg cylinder: ");
+	for(int i = 0; i < numberOfProcess; i++)
+		printf("%d ", cylinderArray);
+	
 	queueIt(cylinderArray, numberOfProcess);
 
 	totalDistance = fcfs(head);
 
-	printf("The total distance that the disk arm moves is : %d\n", totalDistance);
+	printf("\nThe total distance that the disk arm moves is : %d\n", totalDistance);
 
 	return 0;
 }
