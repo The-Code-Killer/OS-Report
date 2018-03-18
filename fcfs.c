@@ -24,6 +24,9 @@ int queueIt(int cylinderArray[], int size) {
 }
 
 int dequeueIt() {
+	ptr = front 
+	front = front -> next;
+	free(ptr);
 	return 0;
 }
 
