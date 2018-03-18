@@ -30,8 +30,15 @@ int dequeueIt() {
 	return 0;
 }
 
-int fcfs(int cylinderArray[], int size) {
+int fcfs(int head) {
+	int sumOfArmMoves = 0;
 
+	while(front != NULL) {
+		sumOfArmMoves += abs(head - front -> cylinder);
+		head = front -> cylinder;
+		dequeueIt();
+	}
+	return sumOfArmMoves;
 }
 
 int main() {
@@ -41,7 +48,7 @@ int main() {
 
 	queueIt(cylinderArray, numberOfProcess);
 
-	totalDistance = fcfs(cylinderArray, numberOfProcess);
+	totalDistance = fcfs(head);
 
 	printf("The total distance that the disk arm moves is : %d\n", totalDistance);
 
