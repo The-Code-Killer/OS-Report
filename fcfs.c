@@ -50,8 +50,8 @@ int main() {
 	printf("Position of head : %d\n", head );
 	printf("Queue containg cylinder: ");
 	for(int i = 0; i < numberOfProcess; i++)
-		printf("%d ", cylinderArray);
-	
+		printf("%d ", cylinderArray[i]);
+
 	queueIt(cylinderArray, numberOfProcess);
 
 	totalDistance = fcfs(head);
