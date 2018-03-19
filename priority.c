@@ -29,18 +29,18 @@ int findMaxPriority() {
 	return 0;
 }
 */
-int mergesort(int arrivalTime[], int serviceTime[], int remainingServiceTime[], int beg, int end) {
-	if(beg = end)
+int mergesortUser(int arrivalTime[], int serviceTime[], int remainingServiceTime[], int beg, int end) {
+	if(beg == end)
 		return 0;
 	int mid = (beg + end) / 2;
-	mergesort(arrivalTime[], serviceTime[], remainingServiceTime[], beg, mid);
-	mergesort(arrivalTime[], serviceTime[], remainingServiceTime[], mid + 1, end);
-	merge(arrivalTime[], serviceTime[], remainingServiceTime[], beg, mid, end);
+	mergesortUser(arrivalTime, serviceTime, remainingServiceTime, beg, mid);
+	mergesortUser(arrivalTime, serviceTime, remainingServiceTime, mid + 1, end);
+	mergeUser(arrivalTime, serviceTime, remainingServiceTime, beg, mid, end);
 
 	return 0;
 }
 
-int merge(int arrivalTime[], int serviceTime[], int remainingServiceTime[], int beg, int mid, int end) {
+int mergeUser(int arrivalTime[], int serviceTime[], int remainingServiceTime[], int beg, int mid, int end) {
 	int i = beg, j = mid + 1, k = 0;
 	int tempArrival[end - beg + 1], tempService[end - beg + 1], tempRemaining[end - beg + 1];	
 
@@ -57,7 +57,7 @@ int merge(int arrivalTime[], int serviceTime[], int remainingServiceTime[], int 
 			tempRemaining[k] = remainingServiceTime[j];
 			j++;
 		}
-		k++
+		k++;
 	}
 
 	if(i > mid) {
@@ -72,7 +72,7 @@ int merge(int arrivalTime[], int serviceTime[], int remainingServiceTime[], int 
 			tempArrival[k] = arrivalTime[i];
 			tempService[k] = serviceTime[i];
 			tempRemaining[k] = remainingServiceTime[i];
-			i++; k++
+			i++; k++;
 	}
 
 	for(i = beg, k = 0; i <= end; i++, k++) {
@@ -96,11 +96,11 @@ int main() {
 
 	printf("\n");
 	for( ; i < numberOfProcess; i++) {
-		printf("\nEnter arrival time of process P%d", i + 1);
+		printf("\nEnter arrival time of process P%d ", i + 1);
 		scanf("%d", &arrivalTime[i]);
 
-		printf("\nEnter service time of process P%d\n", i + 1);
-		scanf("d", &serviceTime[i]);
+		printf("\nEnter service time of process P%d ", i + 1);
+		scanf("%d", &serviceTime[i]);
 
 		priority[i] = 0;
 		remainingServiceTime[i] = serviceTime[i];
@@ -108,9 +108,9 @@ int main() {
 		sum += remainingServiceTime[i];
 	}
 
-	mergesort(arrivalTime, serviceTime, remainingServiceTime, 0, numberOfProcess - 1);
+	mergesortUser(arrivalTime, serviceTime, remainingServiceTime, 0, numberOfProcess - 1);
 
-	for(i = 0; i < numberOfProcess; i++) {
+	/*for(i = 0; i < numberOfProcess; i++) {
 		printf("%d ", arrivalTime[i] );
 	}
 	printf("\n");
@@ -120,7 +120,7 @@ int main() {
 	printf("\n");
 	for(i = 0; i < numberOfProcess; i++) {
 		printf("%d ", remainingServiceTime[i] );
-	}
+	}*/
 
 	/*while(sum--) {
 
