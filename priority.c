@@ -122,9 +122,7 @@ int main() {
 		printf("%d ", remainingServiceTime[i] );
 	}*/
 
-	/*while(sum--) {
-
-	}*/
+	
 
 
 
