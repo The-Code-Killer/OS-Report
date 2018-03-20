@@ -29,16 +29,6 @@ int findMaxPriority() {
 	return 0;
 }
 */
-int mergesortUser(int arrivalTime[], int serviceTime[], int remainingServiceTime[], int beg, int end) {
-	if(beg == end)
-		return 0;
-	int mid = (beg + end) / 2;
-	mergesortUser(arrivalTime, serviceTime, remainingServiceTime, beg, mid);
-	mergesortUser(arrivalTime, serviceTime, remainingServiceTime, mid + 1, end);
-	mergeUser(arrivalTime, serviceTime, remainingServiceTime, beg, mid, end);
-
-	return 0;
-}
 
 int mergeUser(int arrivalTime[], int serviceTime[], int remainingServiceTime[], int beg, int mid, int end) {
 	int i = beg, j = mid + 1, k = 0;
@@ -84,6 +74,27 @@ int mergeUser(int arrivalTime[], int serviceTime[], int remainingServiceTime[], 
 	return 0;
 }
 
+int mergesortUser(int arrivalTime[], int serviceTime[], int remainingServiceTime[], int beg, int end) {
+	if(beg == end)
+		return 0;
+	int mid = (beg + end) / 2;
+	mergesortUser(arrivalTime, serviceTime, remainingServiceTime, beg, mid);
+	mergesortUser(arrivalTime, serviceTime, remainingServiceTime, mid + 1, end);
+	mergeUser(arrivalTime, serviceTime, remainingServiceTime, beg, mid, end);
+
+	return 0;
+}
+
+int getHighestPriority(int priority[], int limit) {
+	int highestPriority = 0, iter;
+	for(iter = 1; iter < limit; iter++) {
+		if(priority[highestPriority] < priority[iter]) {
+			highestPriority = iter;
+		}
+	} 
+	return highestPriority;
+}
+
 int main() {
 	int numberOfProcess, sumArrival = 0, sumRemaining = 0, sum = 0, timeCounter = 0;
 	printf("Enter number of processes : \n");
@@ -113,12 +124,13 @@ int main() {
 
 	mergesortUser(arrivalTime, serviceTime, remainingServiceTime, 0, numberOfProcess - 1);
  
- 	int timeLimit = 1, /*arrived = arrivalTime[0],*/ timeCounter = arrivalTime[0];
+ 	int timeLimit = 1; /*arrived = arrivalTime[0]*/
+ 	timeCounter = arrivalTime[0];
 	while(timeCounter < sum) {
 		int highestPriority;
 
 			while(timeCounter != arrivalTime[timeLimit]) {
-				highestPriority = getHighestPriority(timeCounter, 0, timeLimit);
+				highestPriority = getHighestPriority(priority, timeLimit);
 				remainingServiceTime[highestPriority] -= 1;
 
 				if(remainingServiceTime[highestPriority] == 0) {
@@ -135,7 +147,7 @@ int main() {
 					i++;
 				}
 	
-				timeCounter
+				timeCounter++;
 			}
 			timeCounter++;
 			timeLimit++;
