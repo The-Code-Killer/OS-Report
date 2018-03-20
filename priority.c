@@ -85,12 +85,12 @@ int mergeUser(int arrivalTime[], int serviceTime[], int remainingServiceTime[], 
 }
 
 int main() {
-	int numberOfProcess, timeCounter = 0, sum = 0;
+	int numberOfProcess, sumArrival = 0, sumRemaining = 0, sum = 0, timeCounter = 0;
 	printf("Enter number of processes : \n");
 	scanf("%d", &numberOfProcess);
 
 	int arrivalTime[numberOfProcess], priority[numberOfProcess];
-	int serviceTime[numberOfProcess], remainingServiceTime[numberOfProcess];
+	int serviceTime[numberOfProcess], remainingServiceTime[numberOfProcess], waitingTime = 0;
 
 	int i = 0;
 
@@ -99,34 +99,49 @@ int main() {
 		printf("\nEnter arrival time of process P%d ", i + 1);
 		scanf("%d", &arrivalTime[i]);
 
-		printf("\nEnter service time of process P%d ", i + 1);
+		printf("\nEnter service time of process P%d \n", i + 1);
 		scanf("%d", &serviceTime[i]);
 
 		priority[i] = 0;
 		remainingServiceTime[i] = serviceTime[i];
 
-		sum += remainingServiceTime[i];
+		sumArrival += arrivalTime[i];
+		sumRemaining += remainingServiceTime[i];
+
+		sum = (sumArrival > sumRemaining) ? sumArrival : sumRemaining;
 	}
 
 	mergesortUser(arrivalTime, serviceTime, remainingServiceTime, 0, numberOfProcess - 1);
+ 
+ 	int timeLimit = 1, /*arrived = arrivalTime[0],*/ timeCounter = arrivalTime[0];
+	while(timeCounter < sum) {
+		int highestPriority;
 
-	/*for(i = 0; i < numberOfProcess; i++) {
-		printf("%d ", arrivalTime[i] );
-	}
-	printf("\n");
-	for(i = 0; i < numberOfProcess; i++) {
-		printf("%d ", serviceTime[i] );
-	}
-	printf("\n");
-	for(i = 0; i < numberOfProcess; i++) {
-		printf("%d ", remainingServiceTime[i] );
-	}
-	for(i = 0; i < numberOfProcess; i++) {
-		while(arrivalTime[i] < arrivalTime[i + 1])
-			priority[i]++;
+			while(timeCounter != arrivalTime[timeLimit]) {
+				highestPriority = getHighestPriority(timeCounter, 0, timeLimit);
+				remainingServiceTime[highestPriority] -= 1;
 
+				if(remainingServiceTime[highestPriority] == 0) {
+					priority[highestPriority] = 0;
+					waitingTime += timeCounter - arrivalTime[highestPriority] - serviceTime[highestPriority];
+				}
+				priority[highestPriority] += 1;
+
+				int i = 0;
+				while(i < timeLimit) {
+					if(i == highestPriority)
+						continue;
+					priority[i] += 2;
+					i++;
+				}
+	
+				timeCounter
+			}
+			timeCounter++;
+			timeLimit++;
 	}
-  */
+
+	printf("The average waiting time for each process is : %f\n", (float)waitingTime/numberOfProcess);
 
 	return 0;
 }
