@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//Node containg cylinder number and pointer to next node
 struct Node
 {
 	int cylinder;
 	struct Node *next;
-} *front, *rear, *ptr;
+} *front, *rear, *ptr; //*front pointing to 1st node in the queue and rear pointing to last node in the queue
 
+//funtion to add node in the queue i.e., cylinders in the ready queue
 int queueIt(int cylinderArray[], int size) {
 	for(int i = 0; i < size; i++) {
 		ptr = (struct Node*) malloc(sizeof(struct Node));
@@ -24,6 +26,7 @@ int queueIt(int cylinderArray[], int size) {
 	return 0;
 }
 
+//function to remove cylinders from the ready queue i.e., deleting nodes from the queue
 int dequeueIt() {
 	ptr = front;
 	front = front -> next;
@@ -31,6 +34,7 @@ int dequeueIt() {
 	return 0;
 }
 
+//function to count number of disk-arm moves
 int fcfs(int head) {
 	int sumOfArmMoves = 0;
 
