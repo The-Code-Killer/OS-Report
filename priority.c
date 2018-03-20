@@ -120,11 +120,13 @@ int main() {
 	printf("\n");
 	for(i = 0; i < numberOfProcess; i++) {
 		printf("%d ", remainingServiceTime[i] );
-	}*/
+	}
+	for(i = 0; i < numberOfProcess; i++) {
+		while(arrivalTime[i] < arrivalTime[i + 1])
+			priority[i]++;
 
-	
-
-
+	}
+  */
 
 	return 0;
 }
