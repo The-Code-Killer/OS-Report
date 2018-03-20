@@ -1,35 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
-/*
-struct Node {
-	int arivalTime;
-	int bursttime;
-	int remainingServiceTime;
-	int priority;
-	struct Node *left, *right;
-} *root, *ptr;
 
-int minheapify(struct Node *inserted) {
-	return 0;
-}
-
-int maxheapify(struct Node *inserted) {
-	return 0;
-}
-
-int insertIntoHeap(int process) {
-	return 0;
-}
-
-int deleteFromHeap() {
-	return 0;
-}
-
-int findMaxPriority() {
-	return 0;
-}
-*/
-
+//mergeUser will merge the arrays according to the increasing order of arrival time of repective processes
 int mergeUser(int arrivalTime[], int serviceTime[], int remainingServiceTime[], int beg, int mid, int end) {
 	int i = beg, j = mid + 1, k = 0;
 	int tempArrival[end - beg + 1], tempService[end - beg + 1], tempRemaining[end - beg + 1];	
@@ -74,6 +45,7 @@ int mergeUser(int arrivalTime[], int serviceTime[], int remainingServiceTime[], 
 	return 0;
 }
 
+//mergesortUser will sort the arrays recursively
 int mergesortUser(int arrivalTime[], int serviceTime[], int remainingServiceTime[], int beg, int end) {
 	if(beg == end)
 		return 0;
@@ -85,6 +57,7 @@ int mergesortUser(int arrivalTime[], int serviceTime[], int remainingServiceTime
 	return 0;
 }
 
+//getHighestPriority give the index of highest value in priority array
 int getHighestPriority(int priority[], int serviceTime[], int remainingServiceTime[], int limit) {
 	int highestPriority = 0, iter;
 	for(iter = 1; iter < limit; iter++) {
@@ -130,15 +103,13 @@ int main() {
 
 	mergesortUser(arrivalTime, serviceTime, remainingServiceTime, 0, numberOfProcess - 1);
  
- 	int timeLimit = 1; /*arrived = arrivalTime[0]*/
+ 	int timeLimit = 1; 
  	timeCounter = arrivalTime[0];
 	while(timeCounter <= sum) {
 		int highestPriority;
-		//printf("Loop : 129\n");
 			while(timeCounter != arrivalTime[timeLimit]) {
 				highestPriority = getHighestPriority(priority, serviceTime, remainingServiceTime, timeLimit);
 				remainingServiceTime[highestPriority] -= 1;
-				//printf("Loop : 132\n");
 				if(remainingServiceTime[highestPriority] == 0) {
 					priority[highestPriority] = 0;
 					waitingTime += (timeCounter + 1) - arrivalTime[highestPriority] - serviceTime[highestPriority];
@@ -149,7 +120,6 @@ int main() {
 
 				int i = 0;
 				while(i < timeLimit) {
-					//printf("Loop : 143\n");
 					if(i == highestPriority || remainingServiceTime[i] == 0) {
 						i++;
 						continue;
@@ -165,14 +135,13 @@ int main() {
 				if(remainingServiceTime[numberOfProcess - 1] == 0)
 					goto average;
 			}
-			//timeCounter++;
+	
 		if(timeCounter > sum)
 			break;
 
 		if(timeLimit == numberOfProcess) {
 			highestPriority = getHighestPriority(priority, serviceTime, remainingServiceTime, timeLimit);
 			remainingServiceTime[highestPriority] -= 1;
-			//printf("Loop : 132\n");
 			if(remainingServiceTime[highestPriority] == 0) {
 				priority[highestPriority] = 0;
 				waitingTime += (timeCounter + 1) - arrivalTime[highestPriority] - serviceTime[highestPriority];
@@ -182,7 +151,6 @@ int main() {
 
 			int i = 0;
 			while(i < timeLimit) {
-				//printf("Loop : 143\n");
 				if(i == highestPriority || remainingServiceTime[i] == 0) {
 					i++;
 					continue;
