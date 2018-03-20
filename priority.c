@@ -148,7 +148,7 @@ int main() {
 
 				int i = 0;
 				while(i < timeLimit) {
-					printf("Loop : 143\n");
+					//printf("Loop : 143\n");
 					if(i == highestPriority) {
 						i++;
 						continue;
@@ -171,7 +171,7 @@ int main() {
 			if(timeLimit == numberOfProcess) {
 				highestPriority = getHighestPriority(priority, serviceTime, remainingServiceTime, timeLimit);
 				remainingServiceTime[highestPriority] -= 1;
-				printf("Loop : 132\n");
+				//printf("Loop : 132\n");
 				if(remainingServiceTime[highestPriority] == 0) {
 					priority[highestPriority] = 0;
 					waitingTime += (timeCounter + 1) - arrivalTime[highestPriority] - serviceTime[highestPriority];
