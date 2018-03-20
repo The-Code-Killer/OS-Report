@@ -8,4 +8,4 @@ and dynamic priority scheduling algorithm written in c language.
 		
 		14.		First Come First Serve		fcfs.c
 		19.		Dynamic Priority		priority.c
-'''
+
