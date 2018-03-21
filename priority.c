@@ -63,13 +63,13 @@ int getHighestPriority(int priority[], int serviceTime[], int remainingServiceTi
 	for(iter = 1; iter < limit; iter++) {
 
 		if(priority[highestPriority] == priority[iter]) {
-			if(serviceTime[iter] == remainingServiceTime[iter]) {
+			if((serviceTime[iter] - remainingServiceTime[iter]) < (serviceTime[highestPriority] -remainingServiceTime[highestPriority])) {
 				highestPriority = iter;
 			}
 		}
-		if(priority[highestPriority] < priority[iter]) {
+		else if(priority[highestPriority] < priority[iter]) {
 				 highestPriority = iter;
-		}
+		    }
 	} 
 	return highestPriority;
 }
@@ -113,7 +113,6 @@ int main() {
 				if(remainingServiceTime[highestPriority] == 0) {
 					priority[highestPriority] = 0;
 					waitingTime += (timeCounter + 1) - arrivalTime[highestPriority] - serviceTime[highestPriority];
-					printf("\nWaiting time : %d", waitingTime);
 				}
 				else
 					priority[highestPriority] += 1;
