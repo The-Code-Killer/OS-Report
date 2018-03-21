@@ -167,7 +167,7 @@ int main() {
 		timeLimit++;
 	}
 
-	average : printf("\nThe average waiting time for each process is : %f\n", (float)waitingTime/numberOfProcess);
+	average : printf("\nThe average waiting time for each process is : %.2f\n", (float)waitingTime/numberOfProcess);
 
 	return 0;
 }
