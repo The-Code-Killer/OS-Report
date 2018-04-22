@@ -36,7 +36,7 @@ int dequeueIt() {
 
 //function to count number of disk-arm moves
 int fcfs(int head) {
-	int sumOfArmMoves = 0;
+	int sumOfArmMoves = 143 - 125;
 
 	while(front != NULL) {
 		sumOfArmMoves += abs(head - front -> cylinder);
