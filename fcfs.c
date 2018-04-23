@@ -52,6 +52,7 @@ int main() {
 	int cylinderArray[] = {86, 1470, 913, 1774, 948, 1509, 1022, 1750, 130};
 
 	printf("Position of head : %d\n", head );
+	printf("Previous posittion of head : %d\n", 125);
 	printf("Queue containing cylinder: ");
 	for(int i = 0; i < numberOfProcess; i++)
 		printf("%d ", cylinderArray[i]);
